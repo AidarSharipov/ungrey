@@ -1,20 +1,19 @@
  void fib(int kol, int sum, int el1, int el2)
-            {
-                int i;
-                kol--;
-                Console.WriteLine(el2);
-                i = el2;
-                el2 = el1 + el2;
-                el1 = i;
-                sum += el2;
-                if (kol > 0)
-                {
-                    fib(kol, sum, el1, el2);
-                }
-                else
-                {
-                    Console.WriteLine($"summa rovna{sum}");
-                }
-            }  
-            Console.WriteLine("vvedite kolichestvo");
-            fib(Convert.ToInt32(Console.ReadLine()), 0, 0, 1);
+{
+int i;
+if(kol>el2)Console.WriteLine(el2);
+i = el2;
+el2 = el1 + el2;
+el1 = i;
+sum += el2;
+if (kol > el2)
+{
+fib(kol, sum, el1, el2);
+}
+else
+{
+Console.WriteLine($"summa rovna{sum}");
+}
+}
+Console.WriteLine("vvedite chislo");
+fib(Convert.ToInt32(Console.ReadLine()), 0, 0, 1);
