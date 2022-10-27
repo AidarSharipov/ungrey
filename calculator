@@ -1,0 +1,43 @@
+  void sum(int a,int b)
+            {
+                Console.WriteLine(a+b);
+            }
+            void vichet(int a,int b)
+            {
+                Console.WriteLine(a-b);
+            }
+            void umnozhenie(int a,int b)
+            {
+                Console.WriteLine(a*b);
+            }
+            void delenie(int a, int b)
+            {
+                Console.WriteLine(a/b);
+            }
+            void ostatok(int a,int b)
+            {
+                Console.WriteLine(a%b);
+            }
+            Console.WriteLine("vvedite dva chisla");
+            int a = Convert.ToInt32(Console.ReadLine());
+            int b= Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("vvedite deistvie");
+            string znak = Console.ReadLine();
+            switch(znak)
+            {
+                case ("+"):
+                    sum(a, b);
+                break;
+                case ("-"):
+                    vichet(a, b);
+                break;
+                case ("*"):
+                    umnozhenie(a, b);
+                break;
+                case ("/"):
+                    delenie(a, b);
+                break;
+                case ("%"):
+                    ostatok(a, b);
+                break;
+              }
