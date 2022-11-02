@@ -1,0 +1,43 @@
+ class Person
+        {
+            public string name { set; get;}
+            public int age { set; get; }
+            public Person next;
+            public Person() { }
+            public void NewPerson(string Name,int Age)
+            {
+                Person person = this;
+                while(person.next!=null)
+                {
+                    person = person.next;
+                }
+                person.next = new Person();
+                person.next.name = Name;
+                person.next.age = Age;
+            }
+            public void print()
+            {
+                Console.WriteLine($"Hello, my name is{name}, and i'm {age} years old");
+                Console.WriteLine('\n');
+            }
+        }
+       
+        static void Main(string[] args)
+        {
+            Person Header = new Person();
+            string[] names = new string[10] { "a", "b", "c", "d", "e", "f", "g", "h", "i", "k"};
+            Random random = new Random();
+            foreach(string s in names)
+            {
+                Header.NewPerson(s, random.Next(1,100)) ;
+            }
+            int i = Convert.ToInt32(Console.ReadLine())-1;
+            Person xz=Header.next;
+            while(i>0)
+            {
+                xz = xz.next;
+                i--;
+            }
+            xz.print();
+
+        }
