@@ -40,13 +40,6 @@
             int smallage=101,smallAge=0;
             for(int i=0;i<10;i++)
             {
-                xz.print();
-                xz = xz.next;
-            }
-            Console.WriteLine("  \n\n\n     ");
-
-            for(int i=0;i<10;i++)
-            {
                 xz = Header.next;
                 smallage = xz.age;
                 for(int j=0;j<10;j++)
