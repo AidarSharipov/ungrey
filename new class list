@@ -35,45 +35,4 @@
             {
                 Header.NewPerson(s, random.Next(1,100)) ;
             }
-            Person xz=Header.next;
-            Person small=Header.next;
-            int smallage=101,smallAge=0;
-            for(int i=0;i<9;i++)
-            {
-                xz = Header.next;
-                smallage = xz.age;
-                for(int j=0;j<10;j++)
-                {
-                    if((smallage!=smallAge)&&(smallage>smallAge ))
-                    { 
-                    if ((xz.age <= smallage)&&(xz.age>smallAge))
-                    {
-                        smallage = xz.age;
-                        small = xz;
-                    }
-                        xz = xz.next;
-                    }
-                    else
-                    {
-                        xz = xz.next;
-                        if ((xz.age>smallage)&&(xz.age>smallAge ))
-                        {
-                            smallage = xz.age;
-                        }
-                    }
-                   
-                }
-                smallAge = smallage;
-               
-                    xz = Header.next;
-                    for (int j=0;j<10;j++)
-                    {
-                        if(xz.age==smallage)
-                        {
-                            xz.print();
-                        }
-                        xz = xz.next;
-                    }
-                
-               
-            }
+        }
