@@ -1,23 +1,25 @@
- void fib(int kol, int sum, int el1, int el2)
-            {
-                int i;
-                if (kol > el2)
-                {
-                    Console.WriteLine(el2);
-                    sum += el2;
-                }
-                i = el2;
-                el2 = el1 + el2;
-                el1 = i;
-                
-                if (kol > el2)
-                {
-                    fib(kol, sum, el1, el2);
-                }
-                else
-                {
-                    Console.WriteLine($"summa rovna{sum}");
-                }
-            }
-            Console.WriteLine("vvedite chislo");
-            fib(Convert.ToInt32(Console.ReadLine()), 0, 0, 1);
+using static System.Console;
+
+Write("Введите крайнее число последовательности: ");
+int endNum = Int32.Parse(ReadLine());
+WriteLine($"Сумма: {fibo(endNum)}");
+
+static int fibo(int endNum, int prevVal = 0, int curVal = 1, int sum = 0)
+{
+    if (prevVal == 0) WriteLine($"{prevVal} ");
+    WriteLine($"{curVal} ");
+
+    var tempVal = curVal;
+    curVal += prevVal;
+    prevVal = tempVal;
+    sum += prevVal;
+
+    if (curVal >= endNum)
+    {
+        return sum;
+    }
+    else
+    {
+        return fibo(endNum, prevVal, curVal, sum);
+    }
+}
