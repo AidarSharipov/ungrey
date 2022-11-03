@@ -1,4 +1,4 @@
- class Person
+  class Person
         {
             public string name { set; get;}
             public int age { set; get; }
@@ -17,8 +17,12 @@
             }
             public void print()
             {
-                Console.WriteLine($"Hello, my name is{name}, and i'm {age} years old");
+                Console.WriteLine($"Hello, my name is {name}, and i'm  {age} years old");
                 Console.WriteLine('\n');
+            }
+            public void sort()
+            {
+
             }
         }
        
@@ -31,13 +35,45 @@
             {
                 Header.NewPerson(s, random.Next(1,100)) ;
             }
-            int i = Convert.ToInt32(Console.ReadLine())-1;
             Person xz=Header.next;
-            while(i>0)
+            Person small=Header.next;
+            int smallage=101,smallAge=0;
+            for(int i=0;i<9;i++)
             {
-                xz = xz.next;
-                i--;
+                xz = Header.next;
+                smallage = xz.age;
+                for(int j=0;j<10;j++)
+                {
+                    if((smallage!=smallAge)&&(smallage>smallAge ))
+                    { 
+                    if ((xz.age <= smallage)&&(xz.age>smallAge))
+                    {
+                        smallage = xz.age;
+                        small = xz;
+                    }
+                        xz = xz.next;
+                    }
+                    else
+                    {
+                        xz = xz.next;
+                        if ((xz.age>smallage)&&(xz.age>smallAge ))
+                        {
+                            smallage = xz.age;
+                        }
+                    }
+                   
+                }
+                smallAge = smallage;
+               
+                    xz = Header.next;
+                    for (int j=0;j<10;j++)
+                    {
+                        if(xz.age==smallage)
+                        {
+                            xz.print();
+                        }
+                        xz = xz.next;
+                    }
+                
+               
             }
-            xz.print();
-
-        }
