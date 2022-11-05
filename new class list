@@ -1,134 +1,163 @@
-  class Program
-    {
-
-        class Person
-        {
-            public string name { set; get;}
-            public int age { set; get; }
-            public Person next;
-            public Person() { }
-            public void NewPerson(string Name,int Age)
+   class Sort
             {
-                Person person = this;
-                while(person.next!=null)
+            public Person header;
+                public Sort() { }
+                public void Sort1()
                 {
-                    person = person.next;
-                }
-                person.next = new Person();
-                person.next.name = Name;
-                person.next.age = Age;
-            }
-            public void print()
-            {
-                Console.WriteLine($"Hello, my name is {name}, and i'm  {age} years old");
-                Console.WriteLine('\n');
-            }
-            public void sortprint() //замена значений в объектах класса в зависимости от возраста,не меняя порядка объектов в списке
-            {
-                int i ;
-                string name;
-                int age;
-                bool flag = true;
-                Person min =this;
-                for(i=1;i>0;i--)
-                {
-                    min = this;
-                    while (min.next != null)
+                    bool flag = true;
+                    int age;
+                    int i;
+                    string name;
+                    Person min2;
+                    min2 = header;
+                    for (i = 1; i > 0; i--)
                     {
-                        if (min.age > min.next.age)
+                        header = min2;
+                        while (header.next != null)
                         {
-                            age = min.age;
-                            name = min.name;
-                            min.age = min.next.age;
-                            min.name = min.next.name;
-                            min.next.age = age;
-                            min.next.name = name;
+                            if (header.age > header.next.age)
+                            {
+                                age = header.age;
+                                name = header.name;
+                                header.age = header.next.age;
+                                header.name = header.next.name;
+                                header.next.age = age;
+                                header.next.name = name;
+                            }
+                            header = header.next;
+                            if (flag == true)
+                            {
+                                i++;
+                            }
                         }
-                        min = min.next;
-                        if(flag==true)
-                        { 
-                           i++;
-                        }
+                        flag = false;
                     }
-                    flag = false;
                 }
-
-               
-
-            }
-        }
-       
-        static void Main(string[] args)
-        {
-            Person Header = new Person();
-            string[] names = new string[10] { "a", "b", "c", "d", "e", "f", "g", "h", "i", "k"};
-            Random random = new Random();
-            foreach(string s in names)
-            {
-                Header.NewPerson(s, random.Next(1,100)) ;
-            }
-            Person xz=Header.next;
-            Person small=Header.next;
-            int smallage=101,smallAge=0;
-            Console.WriteLine("if you want see sorted list print yes");
-            if(Console.ReadLine()=="yes")
-            { 
-            for(int i=0;i<10;i++)             //здесь не меняя сам список при выводе сортирую
-            {
-                xz = Header.next;
-                smallage = xz.age;
-                for(int j=0;j<10;j++)
+                public void Sortprint()
                 {
-                    if((smallage!=smallAge)&&(smallage>smallAge ))
-                    { 
-                    if ((xz.age <= smallage)&&(xz.age>smallAge))
+                    Person xz = header.next;
+                    Person small = header.next;
+                    int smallage = 101, smallAge = 0;
+                    for (int i = 0; i < 10; i++)             //здесь не меняя сам список при выводе сортирую
                     {
+                        xz = header.next;
                         smallage = xz.age;
-                        small = xz;
-                    }
-                        xz = xz.next;
-                    }
-                    else
-                    {
-                        if (xz.next != null)
+                        for (int j = 0; j < 10; j++)
                         {
-                            xz = xz.next;
-                        
-                        if ((xz.age>smallage)&&(xz.age>smallAge ))
-                        {
-                            smallage = xz.age;
+                            if ((smallage != smallAge) && (smallage > smallAge))
+                            {
+                                if ((xz.age <= smallage) && (xz.age > smallAge))
+                                {
+                                    smallage = xz.age;
+                                    small = xz;
+                                }
+                                xz = xz.next;
+                            }
+                            else
+                            {
+                                if (xz.next != null)
+                                {
+                                    xz = xz.next;
+                                    if ((xz.age > smallage) && (xz.age > smallAge))
+                                    {
+                                        smallage = xz.age;
+                                    }
+                                }
+                            }
                         }
+                        smallAge = smallage;
+                        xz = header.next;
+                        i--;
+                        for (int j = 0; j < 10; j++)  //проверка на повторы значений и вывод в консоль
+                        {
+                            if (xz.age == smallage)
+                            {
+                                xz.Print();
+                                i++;
+                            }
+                            xz = xz.next;
                         }
                     }
                 }
-                smallAge = smallage;
-               
-              xz = Header.next;
-                    i--;
-                    for (int j=0;j<10;j++)  //проверка на повторы значений и вывод в консоль
-                    {
-                        if(xz.age==smallage)
-                        {
-                            xz.print();
-                            i++;
-                        }
-                        xz = xz.next;
-                    }
-               
-
 
             }
-            }
-            Console.WriteLine("\n\n\n");
-            Header.sortprint();//здесь использую метод сортировки,не меняющий местами объекты в списке,лишь значения в них
-            xz = Header.next;
-            while(xz.next!=null)
+            class PersonListPrint 
             {
-                xz.print();
-                xz = xz.next;
+            
+                public PersonListPrint() { }
+                public void Print(Person person)
+                {
+                person = person.next;
+                       while (person.next!=null)
+                    {
+                    person.Print();
+                    person = person.next;
+                    }
+                    person.Print();
+                }
+            }       
+            class Person
+            {
+                public string name { set; get; }
+                public int age { set; get; }
+                public Person next;
+                public Person() { }
+                public void NewPerson(string Name, int Age)
+                {
+                    Person person = this;
+                    while (person.next != null)
+                    {
+                        person = person.next;
+                    }
+                    person.next = new Person();
+                    person.next.name = Name;
+                    person.next.age = Age;
+                }
+                public void Print()
+                {
+                    Console.WriteLine($"Hello, my name is {name}, and i'm  {age} years old");
+                    Console.WriteLine('\n');
+                }
+                public void Sort()
+                {
+                    Sort sortir = new Sort { header = this };
+                    sortir.Sort1();
+                }
+                public void SortPrint()
+                {
+                    Sort sortir = new Sort { header = this };
+                    sortir.Sortprint();
+                }
+                public void ListPrint()
+                {
+                  PersonListPrint personListPrint = new PersonListPrint();
+                  personListPrint.Print(this);
+                }
+
             }
-            xz.print();
-
+            static void Main(string[] args)
+            {
+                Person Header = new Person();
+                string[] names = new string[10] { "a", "b", "c", "d", "e", "f", "g", "h", "i", "k" };
+                Random random = new Random();
+                foreach (string s in names)
+                {
+                    Header.NewPerson(s, random.Next(1, 100));
+                }
+                Console.WriteLine("if you want to see generated massive print yes");
+                if(Console.ReadLine()=="yes")
+                {
+                Header.ListPrint();
+                }
+                Console.WriteLine("if you want to use sortprint, print yes");
+                if (Console.ReadLine() == "yes")
+                {
+                    Header.SortPrint();
+                }
+                Console.WriteLine("if you want to use sort2 and see print yes");
+                if (Console.ReadLine() == "yes")
+                {
+                    Header.Sort();
+                    Header.ListPrint();
+                }
         }
-
-    }
