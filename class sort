@@ -1,0 +1,35 @@
+ class Sort1
+        {
+            public int i;
+            public string name;
+            public int age;
+            public bool flag = true;
+            public Person min1;
+            public Person min2;
+            public Sort1() { }
+            public void sort1()
+            {
+                min2 = min1;
+                for (i = 1; i > 0; i--)
+                {
+                    min1 = min2;
+                    while (min1.next != null)
+                    {
+                        if (min1.age > min1.next.age)
+                        {
+                            age = min1.age;
+                            name = min1.name;
+                            min1.age = min1.next.age;
+                            min1.name = min1.next.name;
+                            min1.next.age = age;
+                            min1.next.name = name;
+                        }
+                        min1 = min1.next;
+                        if (flag == true)
+                        {
+                            i++;
+                        }
+                    }
+                    flag = false;
+                }
+            }
